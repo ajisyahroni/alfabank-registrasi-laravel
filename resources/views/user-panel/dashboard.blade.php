@@ -6,7 +6,7 @@
     <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; User Panel</span>
 
     <div class="float-right">
-        <span>Aji Syahroni</span>
+        <span>{{ $user_info->nama }}</span>
         <img src="assets/img/team/team-1.jpg" width="30" height="30" class="rounded-circle" alt="">
     </div>
 

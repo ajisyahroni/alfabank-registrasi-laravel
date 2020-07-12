@@ -11,8 +11,8 @@
 
         <div class="row mt-5">
             <div class="col-lg-12 mt-5 mt-lg-0">
-            <form action="{{ route('user.dashboard') }}" method="GET">
-
+            <form action="{{ route('user.login') }}" method="POST">
+                @csrf
                     <div class="form-group">
                         <input type="email" class="form-control" name="email" id="email" placeholder="Email" />
                     </div>

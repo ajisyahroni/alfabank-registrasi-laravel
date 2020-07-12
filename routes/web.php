@@ -19,6 +19,7 @@ Route::get('/', function () {
 
 Route::view('/register','register');
 Route::view('/login','login');
+Route::post('/user-login','UserController@login')->name('user.login');
 
 // Route::group(["prefix"=>"user"], function(){
     Route::view('user-dashboard','user-panel.dashboard')->name('user.dashboard');
