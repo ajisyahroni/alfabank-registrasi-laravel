@@ -6,7 +6,7 @@
 
     <div class="float-right">
         <span>Aji Syahroni</span>
-        <img src="assets/img/team/team-1.jpg" width="30" height="30" class="rounded-circle" alt="">
+        <img src="{{ asset('/assets/img/team/team-1.jpg') }}" width="30" height="30" class="rounded-circle" alt="">
     </div>
 
     <div class="mt-3">
@@ -15,7 +15,7 @@
             <div class="form-row">
                 <div class="col-md-3 form-group">
                     <div class="form-group">
-                        <img class="img-thumbnail" src="assets/img/ava/avatar-02-512.webp" width="200" height="200"
+                        <img class="img-thumbnail" src="{{ asset('assets/img/ava/avatar-02-512.webp') }}" width="200" height="200"
                             id="preview" alt="">
                         <input type="file" class="form-control-file" id="fotoUploader" name="foto_item">
                         <script>

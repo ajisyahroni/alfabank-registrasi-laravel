@@ -7,6 +7,7 @@
 
     <title>@yield('title') | Admin Alfabank</title>
     <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    {{-- <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}"> --}}
     <meta content="" name="descriptison">
     <meta content="" name="keywords">
 

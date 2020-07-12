@@ -6,14 +6,14 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <title>@yield('title') | User Alfabank</title>
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <meta content="" name="descriptison">
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
+    <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+    <link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}">
 </head>
 
 <body>
@@ -26,7 +26,7 @@
     
     
 
-    <script src="assets/js/dashboard.js"></script>
+    <script src="{{ asset('assets/js/dashboard.js') }}"></script>
 </body>
 
 </html>
