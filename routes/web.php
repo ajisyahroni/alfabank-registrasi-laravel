@@ -20,6 +20,7 @@ Route::get('/', function () {
 Route::view('/register', 'register');
 Route::view('/login', 'login');
 Route::post('/user-login', 'UserController@login')->name('user.login');
+Route::post('/user-register', 'UserController@register')->name('user.register');
 
 Route::group(["prefix" => "user"], function () {
     Route::view('dashboard', 'user-panel.dashboard')->name('user.dashboard');

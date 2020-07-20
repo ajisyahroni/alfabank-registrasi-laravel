@@ -13,10 +13,11 @@
         <div class="row mt-5">
             <div class="col-lg-12 mt-5 mt-lg-0">
 
-                <form action="/login" method="POST">
+                <form action="{{route('user.register') }}" method="POST">
+                    @csrf
                     <div class="form-row">
                         <div class="col-md-6 form-group">
-                            <input type="text" name="name" class="form-control" id="name"
+                            <input type="text" name="nama" class="form-control" id="name"
                                 placeholder="Masukkan nama lengkap" />
                         </div>
                         <div class="col-md-6 form-group">
@@ -25,21 +26,21 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="number" class="form-control" name="phone" id="phone"
+                        <input type="number" class="form-control" name="telepon" id="phone"
                             placeholder="gunakan format 62" />
                     </div>
 
                     <div class="form-group">
-                        <input type="date" class="form-control" name="subject" id="subject"
+                        <input type="date" class="form-control" name="tanggal_lahir" id="subject"
                             placeholder="Tanggal lahir" />
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" name="message" rows="5" placeholder="Alamat lengkap"></textarea>
+                        <textarea class="form-control" name="alamat" rows="5" placeholder="Alamat lengkap"></textarea>
                     </div>
 
                     <div class="form-group">
-                        <label for="religion">Gender</label>
-                        <select class="form-control" id="religion" name="religion">
+                        <label for="gender">Gender</label>
+                        <select class="form-control" id="gender" name="gender">
                             <option value="L">Laki-laki</option>
                             <option value="P">Perempuan</option>
                         </select>
@@ -47,7 +48,7 @@
 
                     <div class="form-group">
                         <label for="religion">Agama</label>
-                        <select class="form-control" id="religion" name="religion">
+                        <select class="form-control" id="religion" name="agama">
                             <option value="Islam">Islam</option>
                             <option value="Kristen">Kristen</option>
                             <option value="Katolik">Katolik</option>
@@ -55,6 +56,11 @@
                             <option value="Budha">Budha</option>
                             <option value="Konghucu">Konghucu</option>
                         </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">password</label>
+                        <input class="form-control" type="password" name="password" id="password" placeholder="password">
                     </div>
 
 
