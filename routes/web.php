@@ -33,9 +33,18 @@ Route::group(["prefix" => "user"], function () {
 Route::group(["prefix" => "admin"], function () {
     Route::get('dashboard', 'DashboardController@index')->name('admin.dashboard');
     Route::get('detail-siswa/{pendaftaran}', 'DashboardController@show')->name('admin.detail-siswa');
-    Route::view('inbox', 'admin-panel.inbox')->name('admin.inbox');
-    Route::view('inbox-sudah-dibaca', 'admin-panel.inbox-sudah-dibaca')->name('admin.inbox-sudah-dibaca');
-    Route::view('sertifikasi', 'admin-panel.sertifikasi')->name('admin.sertifikasi');
+    Route::patch('update-status-siswa/{id_pendaftaran}', 'DashboardController@updateStatusSiswa')->name('admin.update-status-siswa');
+
+    Route::get('inbox', 'InboxController@index')->name('admin.inbox');
+    Route::get('inbox-sudah-dibaca', 'InboxController@indexSudahDibaca')->name('admin.inbox-sudah-dibaca');
+    Route::patch('update-status-inbox/{inbox:id}', 'InboxController@updateStatusInbox')->name('admin.update-status-inbox');
+    Route::delete('delete-inbox/{inbox:id}', 'InboxController@destroy')->name('admin.delete-inbox');
+
+    Route::get('sertifikasi', 'SertifikatController@index')->name('admin.sertifikasi');
+    Route::get('tersertifikasi', 'SertifikatController@tersertifikasi')->name('admin.tersertifikasi');
+    Route::patch('lulus-sertifikasi/{pendaftaran:id}', 'SertifikatController@lulusSertifikasi')->name('admin.lulus-sertifikasi');
+    Route::delete('suspend-sertifikasi/{sertifikat:id}','SertifikatController@destroy')->name('admin.suspend-sertifikasi');
+
 
     // GET ALL PROGRAM KURSUS
     Route::get('program-kursus', 'ProgramKursusController@index')->name('admin.program-kursus');

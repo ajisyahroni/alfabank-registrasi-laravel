@@ -14,7 +14,22 @@ class InboxController extends Controller
      */
     public function index()
     {
-        //
+        $inboxes = Inbox::where('status', '=', 'belum_dibaca')->get();
+        return view('admin-panel.inbox', compact('inboxes'));
+    }
+
+    public function indexSudahDibaca()
+    {
+        $inboxes = Inbox::where('status', '=', 'sudah_dibaca')->get();
+        return view('admin-panel.inbox-sudah-dibaca', compact('inboxes'));
+    }
+
+    public function updateStatusInbox(Inbox $inbox)
+    {
+        // dd($inbox);
+        $inbox->status = "sudah_dibaca";
+        $inbox->save();
+        return redirect()->back();
     }
 
     /**
@@ -80,6 +95,8 @@ class InboxController extends Controller
      */
     public function destroy(Inbox $inbox)
     {
-        //
+        // dd($inbox);
+        $inbox->delete();
+        return redirect()->back();
     }
 }

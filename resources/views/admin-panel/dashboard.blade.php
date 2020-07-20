@@ -26,7 +26,7 @@
         <tbody>
             @foreach ($users as $index => $user)
             <tr>
-                <th>{{ $index = $index +1}}</th>
+                <th>{{ $users->firstItem() + $index}}</th>
                 <td>{{ $user->user->nama }}</td>
                 <td>{{ $user->user->email }}</td>
                 <td>{{ $user->user->alamat }}</td>

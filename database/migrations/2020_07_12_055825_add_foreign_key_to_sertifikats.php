@@ -26,7 +26,7 @@ class AddForeignKeyToSertifikats extends Migration
     public function down()
     {
         Schema::table('sertifikats', function (Blueprint $table) {
-            // $table->dropForeign('id_pendaftaran');
+            $table->dropForeign(['id_pendaftaran']);
         });
     }
 }

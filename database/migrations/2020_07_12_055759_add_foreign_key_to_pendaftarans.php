@@ -28,8 +28,8 @@ class AddForeignKeyToPendaftarans extends Migration
     {
         Schema::table('pendaftarans', function (Blueprint $table) {
             
-            // $table->dropForeign('id_user');
-            // $table->dropForeign('id_program_kursus');
+            $table->dropForeign(['id_user']);
+            $table->dropForeign(['id_program_kursus']);
         });
     }
 }

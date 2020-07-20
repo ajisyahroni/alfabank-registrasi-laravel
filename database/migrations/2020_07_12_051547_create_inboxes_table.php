@@ -15,12 +15,13 @@ class CreateInboxesTable extends Migration
     {
         Schema::create('inboxes', function (Blueprint $table) {
             $table->id();
-            $table->string('nama',191);
+            $table->string('nama', 191);
             $table->string('email');
-            $table->string('subjek',191);
+            $table->string('subjek', 191);
             $table->text('pesan');
-            $table->boolean('sudah_dibaca');
+            $table->enum('status', ['sudah_dibaca', 'belum_dibaca'])->default('belum_dibaca');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

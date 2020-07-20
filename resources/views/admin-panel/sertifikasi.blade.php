@@ -11,6 +11,9 @@
             <button class="btn btn-outline-secondary" type="button">cari</button>
         </div>
     </div>
+    <div class="my-2">
+        <a href="{{ route('admin.tersertifikasi') }}" class="btn btn-info btn-block text-white">lihat user tersertifikasi</a>
+    </div>
 
     <table class="table table-striped">
         <thead>
@@ -18,35 +21,34 @@
                 <th>#</th>
                 <th>Nama</th>
                 <th>Email</th>
-                <th>Alamat</th>
                 <th>Program</th>
                 <th>Status</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th>1</th>
-                <td>Mark</td>
-                <td>Otto@gmail</td>
-                <td>Jogja</td>
-                <td>Computer science</td>
-                <td>masa studi</td>
+            @foreach ($user_masa_studi as $index=>$data)
+               <tr>
+                <th>{{ $user_masa_studi->firstItem() + $index }}</th>
+                <td>{{ $data->user->nama}}</td>
+                <td>{{ $data->user->email}}</td>
+                <td>{{ $data->program_kursus->nama}}</td>
+                <td>{{ $data->status}}</td>
                 <td>
-                    <button class="btn btn-sm btn-info">lulus</button>
+                    <form action="{{ route('admin.lulus-sertifikasi',$data->id) }}" method="post">
+                        @csrf
+                        @method('patch')
+                        <input type="submit" class="btn btn-sm btn-info" value="lulus" />
+                    </form>
+                    
                 </td>
-            </tr>
+            </tr> 
+            @endforeach
+            
         </tbody>
     </table>
-
-    <nav class="mt-5">
-        <ul class="pagination pagination-lg">
-            <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1">1</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-        </ul>
-    </nav>
+<div>
+    {{$user_masa_studi->links()}}
+</div>
 </div>
 @endsection

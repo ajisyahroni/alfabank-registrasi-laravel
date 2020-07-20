@@ -11,26 +11,30 @@
         </div>
 
         <div class="col-8">
-            <h1>{{ $user->name }}</h1>
-            <p>{{ $user->email }}</p>
+            <h1>{{ $user->user->nama }}</h1>
+            <p>{{ $user->user->email }}</p>
             <h5 class="my-0"><span class="badge badge-pill badge-info">web design</span></h5>
             <hr>
 
-            <p>14 Juli 1998</p>
-            <p>jalan kregan utama no 33</p>
-            <p>laki-laki</p>
-            <p>Islam</p>
+            <p>{{ $user->user->tanggal_lahir }}</p>
+            <p>{{ $user->user->alamat}}</p>
+            <p>{{ $user->user->gender == 'L' ? 'Laki-laki' : 'Perempuan' }} </p>
+            <p>{{ $user->user->agama }}</p>
             <hr>
 
-            <div class="form-group">
-                <label for="religion">Status</label>
-                <select class="form-control" id="religion" name="religion">
-                    <option value="belum_verifikasi">Belum diverifikasi</option>
-                    <option value="masa_studi">Masa studi</option>
-                </select>
-            </div>
-
-            <a href="#" class="btn btn-block btn-outline-info">Update status</a>
+        <form action="{{ route('admin.update-status-siswa',$user->id) }}" method="post">
+                @csrf
+                @method('patch')
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select class="form-control" id="status" name="status">
+                        <option {{$user->status == 'belum_verifikasi' ? 'selected' : ''}} value="belum_verifikasi">Belum diverifikasi</option>
+                        <option {{$user->status == 'masa_studi' ? 'selected' : ''}} value="masa_studi">Masa studi</option>
+                    </select>
+                </div>
+    
+                <input type="submit" class="btn btn-block btn-outline-info" value="Update status" />
+            </form>
         </div>
     </div>
 </div>

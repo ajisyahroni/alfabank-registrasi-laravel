@@ -20,11 +20,12 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('telepon');
-            $table->string('alamat',191);
+            $table->string('alamat', 191);
             $table->date('tanggal_lahir');
-            $table->enum('gender',['L','P']);
-            $table->string('agama',10);
+            $table->enum('gender', ['L', 'P']);
+            $table->enum('agama', ['islam', 'kristen', 'katolik', 'hindu', 'budha', 'konghucu']);
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

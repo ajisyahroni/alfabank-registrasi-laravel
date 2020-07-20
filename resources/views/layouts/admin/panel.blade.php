@@ -26,7 +26,7 @@
 
         <div class="float-right">
             <span>Admin</span>
-            <img src="assets/img/team/team-1.jpg" width="30" height="30" class="rounded-circle" alt="">
+            <img src="/assets/img/team/team-1.jpg" width="30" height="30" class="rounded-circle" alt="">
         </div>
         @yield('contents')
         @include('layouts.admin.alert')

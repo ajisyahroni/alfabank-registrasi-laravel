@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Pendaftaran;
 use App\Sertifikat;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,32 @@ class SertifikatController extends Controller
      */
     public function index()
     {
-        //
+        $user_masa_studi = Pendaftaran::with(['user','program_kursus'])->where('status','=','masa_studi')->paginate(5);
+        // dd($user_masa_studi);
+        return view('admin-panel.sertifikasi',compact('user_masa_studi'));
+    }
+    public function lulusSertifikasi(Pendaftaran $pendaftaran,Sertifikat $sertifikat)
+    {
+        $pendaftaran->status = "lulus";
+
+        $sertifikat->nilai = 100;
+        $sertifikat->kode_sertifikat = "ALFA/" . $pendaftaran->id . $pendaftaran->created_at;
+        $sertifikat->id_pendaftaran = $pendaftaran->id;
+
+        $pendaftaran->save();
+        $sertifikat->save();
+
+        return redirect()->back();
+
+        
+    }
+
+    public function tersertifikasi(Sertifikat $sertifikat)
+    {
+        $user_tersertifikasi = Sertifikat::with('pendaftaran')->paginate();
+        // return $tersertifikasi;
+        return view('admin-panel.tersertifikasi',compact('user_tersertifikasi'));
+
     }
 
     /**
@@ -80,6 +106,7 @@ class SertifikatController extends Controller
      */
     public function destroy(Sertifikat $sertifikat)
     {
-        //
+        $sertifikat->delete();
+        return redirect()->back();
     }
 }

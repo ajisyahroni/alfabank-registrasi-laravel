@@ -15,8 +15,10 @@ class CreateSertifikatsTable extends Migration
     {
         Schema::create('sertifikats', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('pendaftarans');
+            $table->integer('nilai');
+            $table->string('kode_sertifikat');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -7,6 +7,9 @@ use Faker\Generator as Faker;
 
 $factory->define(Inbox::class, function (Faker $faker) {
     return [
-        //
+        'nama' => $faker->name(),
+        'email' => $faker->email,
+        'subjek' => $faker->word(),
+        'pesan' => $faker->text
     ];
 });

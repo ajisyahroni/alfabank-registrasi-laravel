@@ -15,4 +15,9 @@ class Pendaftaran extends Model
     {
         return $this->belongsTo('App\ProgramKursus', 'id_program_kursus');
     }
+
+    public function sertifikat()
+    {
+        return $this->hasOne(Sertifikat::class,'id_pendaftaran');
+    }
 }

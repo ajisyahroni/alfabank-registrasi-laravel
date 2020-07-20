@@ -17,8 +17,9 @@ class CreatePendaftaransTable extends Migration
             $table->id();
             // $table->foreignId('users');
             // $table->foreignId('program_kursuses');
-            $table->enum('status', ['belum verifikasi', 'masa studi', 'lulus']);
+            $table->enum('status', ['belum_verifikasi', 'masa_studi', 'lulus'])->default('belum_verifikasi');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
