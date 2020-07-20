@@ -32,6 +32,11 @@ Route::group(["prefix" => "user"], function () {
 
 
 Route::group(["prefix" => "admin"], function () {
+
+    Route::view('/login','admin-panel.login');
+    Route::post('/admin-login','AdminController@login')->name('admin.login');
+
+
     Route::get('dashboard', 'DashboardController@index')->name('admin.dashboard');
     Route::get('detail-siswa/{pendaftaran}', 'DashboardController@show')->name('admin.detail-siswa');
     Route::patch('update-status-siswa/{id_pendaftaran}', 'DashboardController@updateStatusSiswa')->name('admin.update-status-siswa');

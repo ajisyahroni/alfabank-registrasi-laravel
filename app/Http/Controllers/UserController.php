@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    public function oldLogin()
+    {
+        
+    }
     public function login(User $user)
     {
         $kredensial = request()->only(['email', 'password']);

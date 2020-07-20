@@ -4,9 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
+    public function Login(Admin $admin, Request $request)
+    {
+        $kredensial = $request->only(['email', 'password']);
+        $kondisi = Auth::guard('admin')->attempt($kredensial);
+
+        if($kondisi){
+            dd(Auth::guard('admin')->user());
+            return 'selamat anda login';
+        }
+        else{
+            return 'hehe maap';
+        }
+        
+    }
     /**
      * Display a listing of the resource.
      *
