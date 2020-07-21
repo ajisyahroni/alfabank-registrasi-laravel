@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Pendaftaran;
 use App\Sertifikat;
+use App\User;
 use Illuminate\Http\Request;
 
 class SertifikatController extends Controller
@@ -15,11 +16,11 @@ class SertifikatController extends Controller
      */
     public function index()
     {
-        $user_masa_studi = Pendaftaran::with(['user','program_kursus'])->where('status','=','masa_studi')->paginate(5);
+        $user_masa_studi = Pendaftaran::with(['user', 'program_kursus'])->where('status', '=', 'masa_studi')->paginate(5);
         // dd($user_masa_studi);
-        return view('admin-panel.sertifikasi',compact('user_masa_studi'));
+        return view('admin-panel.sertifikasi', compact('user_masa_studi'));
     }
-    public function lulusSertifikasi(Pendaftaran $pendaftaran,Sertifikat $sertifikat)
+    public function lulusSertifikasi(Pendaftaran $pendaftaran, Sertifikat $sertifikat)
     {
         $pendaftaran->status = "lulus";
 
@@ -31,13 +32,16 @@ class SertifikatController extends Controller
         $sertifikat->save();
 
         return redirect()->back();
-
-        
     }
 
     public function tersertifikasi(Sertifikat $sertifikat)
     {
-        $user_tersertifikasi = Sertifikat::with('pendaftaran')->paginate();
+        $user_tersertifikasi = User::with('sertifikats', 'program_kursuses')->whereHas('sertifikats', function ($query) {
+            $query->where('id_pendaftaran', '!=', null);
+        })->paginate(5);
+        // return $user_tersertifikasi;
+
+        // $user_tersertifikasi = Sertifikat::with('pendaftaran')->paginate();
         // return $tersertifikasi;
         return view('admin-panel.tersertifikasi',compact('user_tersertifikasi'));
 

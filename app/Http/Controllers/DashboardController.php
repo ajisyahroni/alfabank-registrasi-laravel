@@ -51,6 +51,6 @@ class DashboardController extends Controller
         $pendaftar = Pendaftaran::find($id_pendaftaran);
         $pendaftar->status = $request->status;
         $pendaftar->save();
-        return redirect()->back();
+        return redirect()->to('admin/dashboard');
     }
 }

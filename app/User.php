@@ -10,7 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens,Notifiable;
+    use HasApiTokens, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -42,5 +42,28 @@ class User extends Authenticatable
     public function pendaftarans()
     {
         return $this->hasMany('App\Pendaftaran', 'id_user');
+    }
+    public function program_kursuses()
+    {
+        return $this->belongsToMany(
+            ProgramKursus::class,
+            Pendaftaran::class,
+            'id_user',
+            'id_program_kursus'
+        )
+            ->as('pendaftarans')
+            ->withPivot('status');
+    }
+
+    public function sertifikats()
+    {
+        return $this->hasManyThrough(
+            Sertifikat::class,
+            Pendaftaran::class,
+            'id_user', //foreign key pada tabel pendaftaran yang terkoneksi dengan user
+            'id_pendaftaran', //foreign key pada tabel sertifikat
+            'id', // local key pada tabel user
+            'id' // local key pada tabel pendaftaran
+        );
     }
 }
