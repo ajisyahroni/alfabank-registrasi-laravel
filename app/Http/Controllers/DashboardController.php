@@ -13,11 +13,23 @@ class DashboardController extends Controller
     {
         $keyword = $request->query('search');
         $likeKeyword = "%$keyword%";
-        // $likeSearch = Pendaftaran::with(['user'])->get();
-        // $likeSearch = User::where('nama','like',$likeKeyword)->get();
-        // $likeSearch = Pendaftaran::with(['users'])->where('nama','like', $likeKeyword)->get();
-        $likeSearch = DB::select("SELECT * FROM `pendaftarans` INNER JOIN users ON users.nama LIKE '$likeKeyword'");
-        return $likeSearch;
+        // $likeSearch = Pendaftaran::with([
+        //     'user' => function ($query) use ($likeKeyword) {
+        //         $query->where('nama', 'like', $likeKeyword);
+        //     },
+        //     'program_kursus'
+        // ])
+        //     ->get();
+
+        $likeSearch = User::where('nama', 'like', $likeKeyword)->get('id');
+        $users = Pendaftaran::with('user', 'program_kursus')->whereHas('user', function ($query) use ($likeKeyword) {
+            $query->where('nama', 'like', $likeKeyword);
+        })->paginate(5);
+        // $likeSearch = DB::select("SELECT * FROM `pendaftarans` INNER JOIN users ON users.nama LIKE '$likeKeyword'");
+
+        // return $pendaftaran;
+        return view('admin-panel.dashboard', compact('users'));
+
     }
 
     public function index(Pendaftaran $pendaftaran, User $user)

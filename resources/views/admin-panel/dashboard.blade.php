@@ -3,17 +3,15 @@
 @section('contents')
 
 <div class="mt-3">
-    <div class="input-group mb-3">
-        <form class="form-inline" action="{{route('admin.dashboard.search')}}" method="get">
-            @csrf
-            
-                <input type="text" name="search" class="form-control" placeholder="Cari">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="submit">cari</button>
-                </div>
-            
-        </form>
-    </div>
+    <form action="{{route('admin.dashboard.search')}}" method="get">
+        @csrf
+        <div class="input-group mb-3">
+            <input type="text" name="search" class="form-control" placeholder="Cari">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">cari</button>
+            </div>
+        </div>
+    </form>
 
     <table class="table table-striped">
         <thead>
@@ -28,7 +26,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($users as $index => $user)
+            @forelse ($users as $index => $user)
             <tr>
                 <th>{{ $users->firstItem() + $index}}</th>
                 <td>{{ $user->user->nama }}</td>
@@ -40,7 +38,9 @@
                     <a href="{{ route('admin.detail-siswa', $user->id) }}" class="btn btn-sm btn-info">detail</a>
                 </td>
             </tr>
-            @endforeach
+            @empty
+            <div class="alert alert-danger">data yang anda cari tidak ditemukan</div>
+            @endforelse
 
         </tbody>
     </table>
