@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Pendaftaran;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,16 +33,26 @@ class UserController extends Controller
             return 'bad login';
         }
     }
+    public function userDashboard()
+    {
+        return view('user-panel.dashboard');
+    }
     public function login(User $user)
     {
         $kredensial = request()->only(['email', 'password']);
         $user = Auth::attempt($kredensial);
         if ($user) {
-            $user_info = Auth::user();
-            return view('user-panel.dashboard', compact('user_info'));
+            return redirect()->to('/user/dashboard');
+        } else {
+            return redirect()->to('/login');
         }
     }
-    public function register(User $user, Request $request)
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->to('/');
+    }
+    public function register(User $user, Pendaftaran $pendaftaran, Request $request)
     {
         $this->validate($request, [
             'nama' => 'required|string',
@@ -63,6 +74,11 @@ class UserController extends Controller
         $user->password = bcrypt($request->password);
 
         $user->save();
+
+        $pendaftaran->id_user = $user->id;
+        $pendaftaran->id_program_kursus = $request->program_kursus;
+        $pendaftaran->save();
+
         return redirect()->to('login');
     }
 }

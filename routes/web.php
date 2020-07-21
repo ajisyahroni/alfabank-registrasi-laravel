@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\UserLoginCheck;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,24 +18,30 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::view('/register', 'register');
+Route::get('/register', 'UserDashboardController@registerView');
 Route::view('/login', 'login');
+
 Route::post('/user-login', 'UserController@login')->name('user.login');
 Route::post('/user-register', 'UserController@register')->name('user.register');
 
-Route::group(["prefix" => "user"], function () {
-    Route::view('dashboard', 'user-panel.dashboard')->name('user.dashboard');
-    Route::view('sertifikat', 'user-panel.sertifikat')->name('user.sertifikat');
-    Route::view('pengaturan', 'user-panel.pengaturan')->name('user.pengaturan');
+
+Route::middleware(UserLoginCheck::class)->group(function () {
+    Route::group(["prefix" => "user"], function () {
+        Route::get('dashboard', 'UserDashboardController@dashboard')->name('user.dashboard');
+        Route::get('sertifikat', 'UserDashboardController@sertifikat')->name('user.sertifikat');
+        Route::get('pengaturan', 'UserDashboardController@pengaturan')->name('user.pengaturan');
+        Route::get('logout', 'UserController@logout')->name('user.logout')->withoutMiddleware(UserLoginCheck::class);
+    });
 });
+
 
 
 
 
 Route::group(["prefix" => "admin"], function () {
 
-    Route::view('/login','admin-panel.login');
-    Route::post('/admin-login','AdminController@login')->name('admin.login');
+    Route::view('/login', 'admin-panel.login');
+    Route::post('/admin-login', 'AdminController@login')->name('admin.login');
 
 
     Route::get('dashboard', 'DashboardController@index')->name('admin.dashboard');
@@ -49,7 +56,7 @@ Route::group(["prefix" => "admin"], function () {
     Route::get('sertifikasi', 'SertifikatController@index')->name('admin.sertifikasi');
     Route::get('tersertifikasi', 'SertifikatController@tersertifikasi')->name('admin.tersertifikasi');
     Route::patch('lulus-sertifikasi/{pendaftaran:id}', 'SertifikatController@lulusSertifikasi')->name('admin.lulus-sertifikasi');
-    Route::delete('suspend-sertifikasi/{sertifikat:id}','SertifikatController@destroy')->name('admin.suspend-sertifikasi');
+    Route::delete('suspend-sertifikasi/{sertifikat:id}', 'SertifikatController@destroy')->name('admin.suspend-sertifikasi');
 
 
     // GET ALL PROGRAM KURSUS

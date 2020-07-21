@@ -59,8 +59,18 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="program_kursus">Program Kursus</label>
+                        <select name="program_kursus" id="program_kursus" class="form-control">
+                            @foreach ($program_kursus as $pk)
+                            <option value="{{$pk->id }}">{{ $pk->nama }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <label for="password">password</label>
-                        <input class="form-control" type="password" name="password" id="password" placeholder="password">
+                        <input class="form-control" type="password" name="password" id="password"
+                            placeholder="password">
                     </div>
 
 
