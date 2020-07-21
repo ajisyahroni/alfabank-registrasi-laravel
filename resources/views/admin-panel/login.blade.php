@@ -5,7 +5,7 @@
 <section id="login" class="contact">
     <div class="container">
         <div class="section-title">
-            <h2>Login Form</h2>
+            <h2>Admin Login Form</h2>
             <h3>let's fill this<span>form</span></h3>
         </div>
 
@@ -23,8 +23,6 @@
                     </div>
 
                     <div class="text-center">
-                        <a class="mb-4" href="user-register.html">belum punya akun, register disini</a>
-                        <br>
                         <button class="custom-button mt-2" type="submit">Login</button>
                     </div>
                 </form>

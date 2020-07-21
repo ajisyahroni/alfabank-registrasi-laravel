@@ -8,14 +8,18 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
+    public function logout()
+    {
+        Auth::guard('admin')->logout();
+        return redirect()->to('/admin/login');
+    }
     public function Login(Admin $admin, Request $request)
     {
         $kredensial = $request->only(['email', 'password']);
         $kondisi = Auth::guard('admin')->attempt($kredensial);
 
         if($kondisi){
-            dd(Auth::guard('admin')->user());
-            return 'selamat anda login';
+            return redirect()->to('admin/dashboard');
         }
         else{
             return 'hehe maap';
