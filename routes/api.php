@@ -17,3 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::group(["prefix" => "alumni"], function () {
+    Route::post('login','UserController@alumniLogin');
+    Route::get('blogs','BlogController@index')->middleware('auth:sanctum');
+});
+
+// Route::middleware('auth:sanctum')->get('/alumni/blogs', function (Request $request) {
+//     Route::get('blogs','BlogController@index');
+// });

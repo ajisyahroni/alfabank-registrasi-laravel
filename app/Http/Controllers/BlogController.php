@@ -14,7 +14,12 @@ class BlogController extends Controller
      */
     public function index()
     {
-        //
+        $blogs = Blog::all();
+        return response()
+            ->json([
+                'status' => 200,
+                'data' => $blogs
+            ]);
     }
 
     /**

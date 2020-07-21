@@ -11,6 +11,23 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function alumniLogin(Request $request)
+    {
+
+        $user = User::where('email', '=', $request->email)->first();
+        $condition = Hash::check($request->password, $user->password);
+        if ($condition) {
+            $token = $user->createToken('token-alumni')->plainTextToken;
+
+            return response()->json([
+                'user' => $user,
+                'token' => $token
+            ]);
+
+        } else {
+            return 'bad login';
+        }
+    }
     public function oldLogin()
     {
         // $data = DB::select("SELECT * FROM `users` WHERE email = 'kari.orn@example.com' and password = 'barjono'");
