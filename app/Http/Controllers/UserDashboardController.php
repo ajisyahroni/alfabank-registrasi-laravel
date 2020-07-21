@@ -35,6 +35,12 @@ class UserDashboardController extends Controller
     }
     public function pengaturan()
     {
-        return view('user-panel.pengaturan');
+        $user_info = Auth::user();
+        return view('user-panel.pengaturan',compact('user_info'));
+    }
+
+    public function gantiPasswordView(){
+        $user_info = Auth::user();
+        return view('user-panel.pengaturan-ganti-password',compact('user_info'));
     }
 }

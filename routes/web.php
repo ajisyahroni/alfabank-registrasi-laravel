@@ -30,7 +30,13 @@ Route::middleware(UserLoginCheck::class)->group(function () {
         Route::get('dashboard', 'UserDashboardController@dashboard')->name('user.dashboard');
         Route::get('sertifikat', 'UserDashboardController@sertifikat')->name('user.sertifikat');
         Route::get('pengaturan', 'UserDashboardController@pengaturan')->name('user.pengaturan');
+        Route::get('pengaturan-ganti-password', 'UserDashboardController@gantiPasswordView')->name('user.pengaturan-ganti-password');
         Route::get('logout', 'UserController@logout')->name('user.logout')->withoutMiddleware(UserLoginCheck::class);
+
+        // some action on dashboard users
+        Route::patch('pengaturan-update/{user:id}', 'UserController@update')->name('user.pengaturan-update');
+        Route::patch('pengaturan-ganti-password/{user:id}', 'UserController@gantiPassword')->name('user.pengaturan-ganti-password-action');
+
     });
 });
 

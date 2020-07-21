@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -80,5 +81,45 @@ class UserController extends Controller
         $pendaftaran->save();
 
         return redirect()->to('login');
+    }
+    public function update(User $user, Request $request)
+    {
+        $user->nama = $request->nama ? $request->nama : $user->nama;
+        $user->email = $request->email ? $request->email : $user->email;
+        $user->telepon = $request->telepon ? $request->telepon : $user->telepon;
+        $user->tanggal_lahir = $request->tanggal_lahir ? $request->tanggal_lahir : $user->tanggal_lahir;
+        $user->alamat = $request->alamat ? $request->alamat : $user->alamat;
+        $user->gender = $request->gender ? $request->gender : $user->gender;
+        $user->agama = $request->agama ? $request->agama : $user->agama;
+        $user->save();
+
+        return redirect()->back();
+    }
+    public function gantiPassword(User $user, Request $request)
+    {
+        $id_user = Auth::id();
+        $active_user = User::find($id_user);
+
+        // pencocokan dengan password lama
+        $oldPassword = $request->old_password;
+        $savedPassword = $active_user->password;
+
+        $checkOld = Hash::check($oldPassword, $savedPassword);
+        if ($checkOld) {
+            $newPass = $request->new_password;
+            $confirmNewPass = $request->confirm_new_password;
+
+            if ($newPass == $confirmNewPass) {
+                $active_user->password = bcrypt($confirmNewPass);
+                $active_user->save();
+                Auth::logout();
+                return redirect()->to('/login');
+            } else {
+                return 'youre new pass and confirm new pass are didnt match';
+            }
+        } else {
+            return 'your old pass is didnt match';
+        }
+        // $active_user->password
     }
 }
