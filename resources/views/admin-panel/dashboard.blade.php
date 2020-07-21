@@ -4,11 +4,15 @@
 
 <div class="mt-3">
     <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Cari"
-            aria-label="Recipient's username" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button">cari</button>
-        </div>
+        <form class="form-inline" action="{{route('admin.dashboard.search')}}" method="get">
+            @csrf
+            
+                <input type="text" name="search" class="form-control" placeholder="Cari">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">cari</button>
+                </div>
+            
+        </form>
     </div>
 
     <table class="table table-striped">
@@ -35,9 +39,9 @@
                 <td>
                     <a href="{{ route('admin.detail-siswa', $user->id) }}" class="btn btn-sm btn-info">detail</a>
                 </td>
-            </tr>    
+            </tr>
             @endforeach
-            
+
         </tbody>
     </table>
     <div>

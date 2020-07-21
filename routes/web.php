@@ -51,7 +51,7 @@ Route::middleware(AdminLoginCheck::class)->group(function () {
         Route::view('/login', 'admin-panel.login')->withoutMiddleware(AdminLoginCheck::class);
         Route::post('/admin-login', 'AdminController@login')->name('admin.login')->withoutMiddleware(AdminLoginCheck::class);
         Route::get('/admin-logout','AdminController@logout')->name('admin.logout');
-
+        Route::get('dashboard/cari','DashboardController@search')->name('admin.dashboard.search');
 
         Route::get('dashboard', 'DashboardController@index')->name('admin.dashboard');
         Route::get('detail-siswa/{pendaftaran}', 'DashboardController@show')->name('admin.detail-siswa');
