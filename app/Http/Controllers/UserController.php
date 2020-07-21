@@ -24,11 +24,11 @@ class UserController extends Controller
         $cookie_email = $request->cookie('email_user');
         $sts = $cookie_email == $session_email;
         // return $sts;
-        
-        if($sts){
-            return 'welcome to dashboard <a href="/logout" >logout</>';
-        }
-        else{
+        if ($session_email && $cookie_email) {
+            if ($sts) {
+                return 'welcome to dashboard <a href="/logout" >logout</>';
+            }
+        } else {
             return 'bad login';
         }
     }
