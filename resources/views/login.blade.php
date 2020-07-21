@@ -23,7 +23,7 @@
                     </div>
 
                     <div class="text-center">
-                        <a class="mb-4" href="user-register.html">belum punya akun, register disini</a>
+                        <a class="mb-4" href="/register">belum punya akun, register disini</a>
                         <br>
                         <button class="custom-button mt-2" type="submit">Login</button>
                     </div>
