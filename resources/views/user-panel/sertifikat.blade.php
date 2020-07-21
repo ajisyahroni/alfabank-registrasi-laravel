@@ -6,21 +6,21 @@
 
     <div class="float-right">
         <span>Aji Syahroni</span>
-        <img src="assets/img/team/team-1.jpg" width="30" height="30" class="rounded-circle" alt="">
+        <img src="/assets/img/team/team-1.jpg" width="30" height="30" class="rounded-circle" alt="">
     </div>
 
 </div>
 
-<div class="mt-3">
-    <!-- ======= Hero Section ======= -->
+  
+<div class="mt-3 text-center" style="background: url('/assets/img/hero-bg.jpg') top center;">
     <section id="certificate">
         <div class="certificate-container">
             <h1>Certificate of Competence</h1>
             <h2>Alfabank proud given to </h2>
-            <img width="300" height="300" src="assets/img/team/team-1.jpg" class="rounded-circle" alt="">
+            <img width="300" height="300" src="/assets/img/team/team-1.jpg" class="rounded-circle" alt="">
             <h3>Aji <strong>Syahroni</strong></h3>
             <h3>great competence at computer science</h3>
         </div>
-    </section><!-- End Hero -->
+    </section>
 </div>
 @endsection
