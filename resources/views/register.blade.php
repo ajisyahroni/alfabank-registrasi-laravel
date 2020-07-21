@@ -49,12 +49,12 @@
                     <div class="form-group">
                         <label for="religion">Agama</label>
                         <select class="form-control" id="religion" name="agama">
-                            <option value="Islam">Islam</option>
-                            <option value="Kristen">Kristen</option>
-                            <option value="Katolik">Katolik</option>
-                            <option value="Hindu">Hindu</option>
-                            <option value="Budha">Budha</option>
-                            <option value="Konghucu">Konghucu</option>
+                            <option value="islam">Islam</option>
+                            <option value="kristen">Kristen</option>
+                            <option value="katolik">Katolik</option>
+                            <option value="hindu">Hindu</option>
+                            <option value="budha">Budha</option>
+                            <option value="konghucu">Konghucu</option>
                         </select>
                     </div>
 
