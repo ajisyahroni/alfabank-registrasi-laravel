@@ -26,9 +26,9 @@ class CreateUsersTable extends Migration
             $table->enum('gender', ['L', 'P']);
             $table->enum('agama', ['islam', 'kristen', 'katolik', 'hindu', 'budha', 'konghucu']);
             $table->rememberToken();
-            // $table->timestamps();
-            $table->timestamp('created_at')->default(DB::raw('current_timestamp'));
-            $table->timestamp('updated_at')->default(DB::raw('current_timestamp on update current_timestamp'));
+            $table->timestamps();
+            // $table->timestamp('created_at')->default(DB::raw('current_timestamp'));
+            // $table->timestamp('updated_at')->default(DB::raw('current_timestamp on update current_timestamp'));
             $table->softDeletes();
 
         });
