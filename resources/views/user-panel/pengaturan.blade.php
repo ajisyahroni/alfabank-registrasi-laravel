@@ -11,15 +11,15 @@
 
 <div class="mt-3">
 
-    <form action="{{ route('user.pengaturan-update', $user_info->id) }}" method="POST">
+    <form action="{{ route('user.pengaturan-update', $user_info->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('patch')
         <div class="form-row">
             <div class="col-md-3 form-group">
                 <div class="form-group">
-                    <img class="img-thumbnail" src="{{ asset('assets/img/ava/avatar-02-512.webp') }}" width="200"
+                    <img class="img-thumbnail" src="{{ $user_info->image ? '/storage/'.$user_info->image : asset('assets/img/ava/avatar-02-512.webp') }}" width="200"
                         height="200" id="preview" alt="">
-                    <input type="file" class="form-control-file" id="fotoUploader" name="foto_item">
+                    <input type="file" class="form-control-file" id="fotoUploader" name="image">
                     <script>
                         var foto = document.getElementById("fotoUploader")
                         var preview = document.getElementById("preview")

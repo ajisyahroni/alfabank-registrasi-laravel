@@ -23,7 +23,6 @@ class UserController extends Controller
                 'user' => $user,
                 'token' => $token
             ]);
-
         } else {
             return 'bad login';
         }
@@ -101,6 +100,11 @@ class UserController extends Controller
     }
     public function update(User $user, Request $request)
     {
+        // check user image 
+        if ($request->file('image')) {
+            $file = $request->file('image')->store('public');
+        }
+
         $user->nama = $request->nama ? $request->nama : $user->nama;
         $user->email = $request->email ? $request->email : $user->email;
         $user->telepon = $request->telepon ? $request->telepon : $user->telepon;
@@ -108,6 +112,8 @@ class UserController extends Controller
         $user->alamat = $request->alamat ? $request->alamat : $user->alamat;
         $user->gender = $request->gender ? $request->gender : $user->gender;
         $user->agama = $request->agama ? $request->agama : $user->agama;
+
+        $user->image = $request->file('image') ? $request->image->hashName() : $user->image;
         $user->save();
 
         return redirect()->back();
